@@ -106,7 +106,25 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vff='files=$(fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then vi $files; fi'
+# alias vff='files=$(fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then vim $files; fi'
+# alias bff='files=$(fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then bat $files; fi'
+
+function vff(){
+	if [[ $# -gt 0 ]]; then
+		files=$(find $1 | fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then vi $files; fi
+	else
+		files=$(fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then vi $files; fi
+	fi
+}
+
+function bff(){
+	if [[ $# -gt 0 ]]; then
+		files=$(find $1 | fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then bat $files; fi
+	else
+		files=$(fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then bat $files; fi
+	fi
+}
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
