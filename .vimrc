@@ -30,6 +30,12 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'junegunn/fzf'
 " fzf.vim
 Plugin 'junegunn/fzf.vim'
+" Man in vim
+Plugin 'git@github.com:vim-utils/vim-man.git'
+" plugin from vim-commentary
+Plugin 'git@github.com:tpope/vim-commentary.git'
+" plugin for surrounding decorators/tags
+Plugin 'git@github.com:tpope/vim-surround.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -153,6 +159,8 @@ nnoremap <UP> gk
 
 " Fast saving
 nmap <leader>w :w!<cr>
+" Fast quiting
+nmap <leader>q :qa!<cr>
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
@@ -272,3 +280,7 @@ set iskeyword+=:
 
 " to use fzf
 set rtp+=/usr/local/opt/fzf
+nnoremap <leader>ff :FZF<cr>
+nnoremap <leader>fg :BLines<cr>
+nnoremap <leader>fs :Lines<cr>
+nnoremap <leader>fb :Buffers<cr>

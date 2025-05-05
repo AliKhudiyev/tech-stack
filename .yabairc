@@ -16,7 +16,7 @@ yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 yabai -m mouse_drop_action swap
 
-# diaable apps
+# disable apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off

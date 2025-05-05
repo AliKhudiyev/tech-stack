@@ -94,6 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -125,6 +126,15 @@ function bff(){
 	fi
 }
 
+function off(){
+	if [[ $# -gt 0 ]]; then
+		files=$(find $1 | fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then open $files; fi
+	else
+		files=$(fzf --height="70%" --preview="vi {}" --border); if [[ ${#files} -gt 0 ]]; then open $files; fi
+	fi
+}
+
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -133,11 +143,12 @@ export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # Added for python3.6 support with brew
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+# export PATH="$HOME/.pyenv/bin:$PATH"
+# export PATH="/usr/local/bin:$PATH"
 
 # export PATH="/usr/local/bin:$PATH"
-export PATH="/Users/alikhudiyev/Library/Python/3.9/bin:$PATH"
+# export PATH="/Users/alikhudiyev/Library/Python/3.9/bin:$PATH"
+export PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin:$PATH"
 
 if [ -d "/usr/local/opt/ruby/bin" ]; then
   export PATH=/usr/local/opt/ruby/bin:$PATH
@@ -162,3 +173,7 @@ PROMPT=${PROMPT/\%c/\%~}
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 # export PATH="/usr/local/opt/mysql@8.4/bin:$PATH"
 export CLOUDSDK_PYTHON=$(which python3)
+
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(thefuck --alias)"
+if [[ $(gpg-agent 2>&1 | cut -d ':' -f2) != " gpg-agent running and available" ]]; then eval "$(gpg-agent --daemon)"; fi
